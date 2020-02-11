@@ -22,6 +22,7 @@ import copy
 
 #Werkversie
 app = dash.Dash()
+server = app.server
 lijst_pijlerz = {'Beleid':
                 [('Studentenwelzijn is een strategische prioriteit van ons beleid', 1),
                  ('Studentenwelzijn staat structureel op de agenda bij bestuurlijke overleggen', 1),
