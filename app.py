@@ -10,7 +10,6 @@ import random
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-import dash_auth
 import dash_table
 import plotly.graph_objs as go
 import copy
