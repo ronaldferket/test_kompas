@@ -190,8 +190,8 @@ app.layout = html.Div(
                      zip(['Beleid', 'Medewerker', 'Studenten'],
                          ['Beleid', 'Medewerker', 'Studenten']) ],value = 'Studenten',style={'display': 'inline-block','width': '66%'} )])
         ,
-        html.Div([dcc.Store(id='waarden',storage_type='local'),]),
-        html.Div([dcc.Store(id='dataone',storage_type='local', ),]),
+        html.Div([dcc.Store(id='waarden',storage_type='memory'),]),
+        html.Div([dcc.Store(id='dataone',storage_type='memory', ),]),
         html.Div(dcc.Graph(id = 'Chart'))])
 
 
