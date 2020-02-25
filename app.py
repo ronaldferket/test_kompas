@@ -15,7 +15,7 @@ import plotly.graph_objs as go
 import copy
 
 
-# In[6]:
+# In[15]:
 
 
 #Werkversie
@@ -239,7 +239,9 @@ def update_table(groep, vragenn, vragennn,datak, datafr, lijst_pijlers, nummer):
         if int(vragennn) > int(vragenn):
             datak[int(datafr[1]['Test'])-1] = datak[int(datafr[1]['Test'])-1] + 1 
         df = [{'Antwoord': '', 'Stelling': 'Bedankt voor het invullen!'}, {'Antwoord': '', 'Stelling': 'De test is klaar!'}]
-        return df, datak, lijst_pijlers
+        nummer_output = nummer
+        tekst_output = 'vraag ' + str(nummer_output) + "/16"
+        return df, datak, lijst_pijlers, nummer_output, tekst_output
     uno = random.randint(0,len(lijst_pijlers[groep])-1)
     uno_PL = lijst_pijlers[groep][uno][1]
     uno_Stel = lijst_pijlers[groep][uno][0]
@@ -287,7 +289,7 @@ def update_figure(groep, school, groepp, infor):
     return {'data': [piedata, piedata_two], 'layout' : layout}
 
 
-# In[ ]:
+# In[16]:
 
 
 if __name__ == '__main__':
