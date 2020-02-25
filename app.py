@@ -15,7 +15,7 @@ import plotly.graph_objs as go
 import copy
 
 
-# In[5]:
+# In[6]:
 
 
 #Werkversie
@@ -162,7 +162,7 @@ app.layout = html.Div(
         ]),
      
         html.H3('Vanaf hier kies je uit de volgende twee stellingen stellingen',style={'display': 'inline-block','width': '50%', 'backgroundColor': '#ffd300'}),
-        html.H3('test',style={'display': 'inline-block','width': '50%', 'backgroundColor': '#ffd300', 'textAlign': 'right'}),
+        html.H3(id = 'tekst',style={'display': 'inline-block','width': '50%', 'backgroundColor': '#ffd300', 'textAlign': 'right'}),
      
         html.Div(dash_table.DataTable(
         id='table',
@@ -210,14 +210,19 @@ app.layout = html.Div(
 @app.callback(
     [dash.dependencies.Output('table', 'data'),
      dash.dependencies.Output('waarden', 'data'),
-    dash.dependencies.Output('dataone', 'data')],
+    dash.dependencies.Output('dataone', 'data'),
+    dash.dependencies.Output('nummer_stor', 'data'),
+    dash.dependencies.Output('tekst', 'children')],
     [dash.dependencies.Input('naam', 'value'), 
      dash.dependencies.Input('knopA', 'n_clicks_timestamp'),
      dash.dependencies.Input('knopB', 'n_clicks_timestamp'), 
     ], [dash.dependencies.State('waarden', 'data'),
        dash.dependencies.State('table', 'data'),
-       dash.dependencies.State('dataone', 'data')])
-def update_table(groep, vragenn, vragennn,datak, datafr, lijst_pijlers):
+       dash.dependencies.State('dataone', 'data'), 
+       dash.dependencies.State('nummer_stor', 'data')])
+def update_table(groep, vragenn, vragennn,datak, datafr, lijst_pijlers, nummer):
+    while nummer is None:
+        nummer = 0
     while lijst_pijlers is None:
         lijst_pijlers = copy.deepcopy(lijst_pijlerz)
         datak = [0,0,0,0,0,0,0,0]
@@ -254,7 +259,9 @@ def update_table(groep, vragenn, vragennn,datak, datafr, lijst_pijlers):
         datak[int(datafr[0]['Test'])-1] = datak[int(datafr[0]['Test'])-1] + 1
     if int(vragennn) > int(vragenn):
         datak[int(datafr[1]['Test'])-1] = datak[int(datafr[1]['Test'])-1] + 1 
-    return df, datak, lijst_pijlers
+    nummer_output = nummer + 1
+    tekst_output = 'vraag ' + str(nummer_output) + "/16"
+    return df, datak, lijst_pijlers, nummer_output, tekst_output
 
 
 @app.callback(
@@ -280,9 +287,15 @@ def update_figure(groep, school, groepp, infor):
     return {'data': [piedata, piedata_two], 'layout' : layout}
 
 
-# In[6]:
+# In[ ]:
 
 
 if __name__ == '__main__':
     app.run_server()
+
+
+# In[ ]:
+
+
+
 
