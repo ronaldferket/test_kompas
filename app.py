@@ -15,7 +15,7 @@ import plotly.graph_objs as go
 import copy
 
 
-# In[15]:
+# In[7]:
 
 
 #Werkversie
@@ -202,6 +202,7 @@ app.layout = html.Div(
         ,
         html.Div([dcc.Store(id='waarden',storage_type='memory'),]),
         html.Div([dcc.Store(id='dataone',storage_type='memory'),]),
+        html.Div([dcc.Store(id='gekozen',storage_type='memory'),]),
         html.Div([dcc.Store(id='nummer_stor',storage_type='memory'),]),
         html.Div(dcc.Graph(id = 'Chart'))])
 
@@ -212,15 +213,22 @@ app.layout = html.Div(
      dash.dependencies.Output('waarden', 'data'),
     dash.dependencies.Output('dataone', 'data'),
     dash.dependencies.Output('nummer_stor', 'data'),
-    dash.dependencies.Output('tekst', 'children')],
+    dash.dependencies.Output('tekst', 'children'),
+    dash.dependencies.Output('gekozen', 'data')],
     [dash.dependencies.Input('naam', 'value'), 
      dash.dependencies.Input('knopA', 'n_clicks_timestamp'),
      dash.dependencies.Input('knopB', 'n_clicks_timestamp'), 
     ], [dash.dependencies.State('waarden', 'data'),
        dash.dependencies.State('table', 'data'),
        dash.dependencies.State('dataone', 'data'), 
-       dash.dependencies.State('nummer_stor', 'data')])
-def update_table(groep, vragenn, vragennn,datak, datafr, lijst_pijlers, nummer):
+       dash.dependencies.State('nummer_stor', 'data'),
+       dash.dependencies.State('gekozen', 'data')])
+def update_table(groep, vragenn, vragennn,datak, datafr, lijst_pijlers, nummer, huidige_groep):
+    gekozen_groep = groep
+    if gekozen_groep != huidige_groep:
+        datak = [0,0,0,0,0,0,0,0]
+        lijst_pijlers = copy.deepcopy(lijst_pijlerz)
+        nummer = 0
     while nummer is None:
         nummer = 0
     while lijst_pijlers is None:
@@ -229,10 +237,6 @@ def update_table(groep, vragenn, vragennn,datak, datafr, lijst_pijlers, nummer):
     while datak is None:
         lijst_pijlers = copy.deepcopy(lijst_pijlerz)
         datak = [0,0,0,0,0,0,0,0]
-    while len(lijst_pijlers[groep]) == 0 and np.sum(datak) >= 16:
-        lijst_pijlers = copy.deepcopy(lijst_pijlerz)
-    if 16 - len(lijst_pijlers[groep])/2 > sum(datak) + 1:
-        lijst_pijlers = copy.deepcopy(lijst_pijlerz)
     if len(lijst_pijlers[groep]) == 0 and np.sum(datak) == 15:
         if int(vragenn) > int(vragennn):
             datak[int(datafr[0]['Test'])-1] = datak[int(datafr[0]['Test'])-1] + 1
@@ -241,7 +245,7 @@ def update_table(groep, vragenn, vragennn,datak, datafr, lijst_pijlers, nummer):
         df = [{'Antwoord': '', 'Stelling': 'Bedankt voor het invullen!'}, {'Antwoord': '', 'Stelling': 'De test is klaar!'}]
         nummer_output = nummer
         tekst_output = 'vraag ' + str(nummer_output) + "/16"
-        return df, datak, lijst_pijlers, nummer_output, tekst_output
+        return df, datak, lijst_pijlers, nummer_output, tekst_output, gekozen_groep
     uno = random.randint(0,len(lijst_pijlers[groep])-1)
     uno_PL = lijst_pijlers[groep][uno][1]
     uno_Stel = lijst_pijlers[groep][uno][0]
@@ -261,9 +265,12 @@ def update_table(groep, vragenn, vragennn,datak, datafr, lijst_pijlers, nummer):
         datak[int(datafr[0]['Test'])-1] = datak[int(datafr[0]['Test'])-1] + 1
     if int(vragennn) > int(vragenn):
         datak[int(datafr[1]['Test'])-1] = datak[int(datafr[1]['Test'])-1] + 1 
+    if gekozen_groep != huidige_groep:
+        datak = [0,0,0,0,0,0,0,0]
+    
     nummer_output = nummer + 1
     tekst_output = 'vraag ' + str(nummer_output) + "/16"
-    return df, datak, lijst_pijlers, nummer_output, tekst_output
+    return df, datak, lijst_pijlers, nummer_output, tekst_output, gekozen_groep
 
 
 @app.callback(
@@ -289,11 +296,23 @@ def update_figure(groep, school, groepp, infor):
     return {'data': [piedata, piedata_two], 'layout' : layout}
 
 
-# In[16]:
+# In[ ]:
 
 
 if __name__ == '__main__':
     app.run_server()
+
+
+# In[4]:
+
+
+## OP GITHUB staat de laatste versie.
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
