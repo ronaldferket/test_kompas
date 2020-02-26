@@ -15,7 +15,7 @@ import plotly.graph_objs as go
 import copy
 
 
-# In[7]:
+# In[12]:
 
 
 #Werkversie
@@ -261,10 +261,11 @@ def update_table(groep, vragenn, vragennn,datak, datafr, lijst_pijlers, nummer, 
     df = [{'Antwoord': 'A', 'Stelling': uno_Stel, 'Test' : uno_PL}, {'Antwoord': 'B', 'Stelling': duo_Stel, 'Test' : duo_PL}]
     if len(lijst_pijlers[groep]) == 30:
         datak = [0,0,0,0,0,0,0,0]
-    if int(vragenn) > int(vragennn):
-        datak[int(datafr[0]['Test'])-1] = datak[int(datafr[0]['Test'])-1] + 1
-    if int(vragennn) > int(vragenn):
-        datak[int(datafr[1]['Test'])-1] = datak[int(datafr[1]['Test'])-1] + 1 
+    if gekozen_groep == huidige_groep:
+        if int(vragenn) > int(vragennn):
+            datak[int(datafr[0]['Test'])-1] = datak[int(datafr[0]['Test'])-1] + 1
+        if int(vragennn) > int(vragenn):
+            datak[int(datafr[1]['Test'])-1] = datak[int(datafr[1]['Test'])-1] + 1 
     if gekozen_groep != huidige_groep:
         datak = [0,0,0,0,0,0,0,0]
     
@@ -296,7 +297,7 @@ def update_figure(groep, school, groepp, infor):
     return {'data': [piedata, piedata_two], 'layout' : layout}
 
 
-# In[ ]:
+# In[13]:
 
 
 if __name__ == '__main__':
