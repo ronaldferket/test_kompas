@@ -135,7 +135,7 @@ old_database = {'Haagse Hoge school' : {'Beleid': {'Scores' : [1,4,0,1,3,1,4,2],
 
 r = [0,0,0,0,0,0,0,0]
 app.layout = html.Div(
-    [   html.H1('Aan de slag met het Kompas Studentenwelzijn',style={'backgroundColor': '#ffd300'}),
+    [   html.H1('Aan de slag met het Kompas Studentenwelzijn',style={'backgroundColor': '#b6dbbf'}),
         html.P('Ben je beleidsbepaler, onderwijsprofessional of student? En ben je op zoek naar een aanpak voor een gedeeld beeld en gezamenlijke taal voor het bevorderen van studentenwelzijn? '),
         html.P('Ga dan direct aan de slag! Je deelname is volledig anoniem.'),
         html.H2('Deelnemer'),
@@ -164,8 +164,8 @@ app.layout = html.Div(
         
         ]),
      
-        html.Div(html.H1('Stellingen',style={ 'backgroundColor': '#ffd300'})),
-        html.Div(html.P('Hieronder worden 16 keer twee stellingen gegeven. Kies steeds de stellingen waaraan jij priorteit geeft')),
+        html.Div(html.H1('Stellingen',style={ 'backgroundColor': '#b6dbbf'})),
+        html.Div(html.P('Hieronder worden 16 keer twee stellingen gegeven. Kies steeds de stellingen waaraan jij prioriteit geeft')),
         html.Div(html.P('Er zijn geen goede of foute antwoorden, het gaat om jouw beleving.')),
         html.H3(id = 'tekst',style={  'textAlign': 'right'}),
      
@@ -181,7 +181,7 @@ app.layout = html.Div(
                     'if': {'column_id': 'Antwoord'},
                     'textAlign': 'center'
                 },
-            ]), style={'width': '49%','backgroundColor': '#ffd300'}),
+            ]), style={'width': '49%','backgroundColor': '#b6dbbf'}),
      
         html.H3('Kies A of B met de stelling waaraan jij prioriteit geeft:'),
      
@@ -196,10 +196,10 @@ app.layout = html.Div(
             ])]
             
         )),
-        html.Div(html.H1('Vergelijking',style={'backgroundColor': '#ffd300'})),
+        html.Div(html.H1('Vergelijking',style={'backgroundColor': '#b6dbbf'})),
         
         html.Div(
-        html.H2('Vergelijk je gegevens met die van anderen. '),),
+        html.H3('Vergelijk je gegevens met die van anderen: '),),
         html.Div(html.H3('Doelgroep:' )),
         html.Div([dcc.Dropdown(id=  'kies_school',options=[{'label':nametitle, 'value':name} for nametitle,name in 
                      zip(['Haagse Hoge school', 'Hoge school voor de kunsten', 'TU Delft'],
