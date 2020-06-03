@@ -165,7 +165,7 @@ app.layout = html.Div(
         ]),
      
         html.Div(html.H1('Stellingen',style={ 'backgroundColor': '#b6dbbf'})),
-        html.Div(html.P('Hieronder worden 16 keer twee stellingen gegeven. Kies steeds de stellingen waaraan jij prioriteit geeft')),
+        html.Div(html.P('Hieronder worden 16 keer twee stellingen gegeven. Kies steeds de stellingen waaraan jij prioriteit geeft.')),
         html.Div(html.P('Er zijn geen goede of foute antwoorden, het gaat om jouw beleving.')),
         html.H3(id = 'tekst',style={  'textAlign': 'right'}),
      
