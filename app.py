@@ -15,7 +15,7 @@ import plotly.graph_objs as go
 import copy
 
 
-# In[12]:
+# In[2]:
 
 
 #Werkversie
@@ -135,8 +135,11 @@ old_database = {'Haagse Hoge school' : {'Beleid': {'Scores' : [1,4,0,1,3,1,4,2],
 
 r = [0,0,0,0,0,0,0,0]
 app.layout = html.Div(
-    [   html.H1('Welkom bij het studentenkompas',style={'backgroundColor': '#ffd300'}),
-        html.H3('U bent een:',style={'backgroundColor': '#ffd300'}),
+    [   html.H1('Aan de slag met het Kompas Studentenwelzijn',style={'backgroundColor': '#ffd300'}),
+        html.P('Ben je beleidsbepaler, onderwijsprofessional of student? En ben je op zoek naar een aanpak voor een gedeeld beeld en gezamenlijke taal voor het bevorderen van studentenwelzijn? '),
+        html.P('Ga dan direct aan de slag! Je deelname is volledig anoniem.'),
+        html.H2('Deelnemer'),
+        html.H3('Selecteer de doelgroep die op jou van toepassing is.'),
         
         html.Div([
         html.Div([
@@ -148,7 +151,7 @@ app.layout = html.Div(
         
   
         ]),
-            
+         html.Div(html.H3('Vul hier de naam van de onderwijsinstelling in:')),   
          html.Div([
         dcc.Dropdown(
             id='school',
@@ -161,8 +164,10 @@ app.layout = html.Div(
         
         ]),
      
-        html.H3('Vanaf hier kies je uit de volgende twee stellingen stellingen',style={'display': 'inline-block','width': '50%', 'backgroundColor': '#ffd300'}),
-        html.H3(id = 'tekst',style={'display': 'inline-block','width': '50%', 'backgroundColor': '#ffd300', 'textAlign': 'right'}),
+        html.Div(html.H1('Stellingen',style={ 'backgroundColor': '#ffd300'})),
+        html.Div(html.P('Hieronder worden 16 keer twee stellingen gegeven. Kies steeds de stellingen waaraan jij priorteit geeft')),
+        html.Div(html.P('Er zijn geen goede of foute antwoorden, het gaat om jouw beleving.')),
+        html.H3(id = 'tekst',style={  'textAlign': 'right'}),
      
         html.Div(dash_table.DataTable(
         id='table',
@@ -178,7 +183,7 @@ app.layout = html.Div(
                 },
             ]), style={'width': '49%','backgroundColor': '#ffd300'}),
      
-        html.H3('Kies hieronder je antwoord',style={'backgroundColor': '#ffd300'}),
+        html.H3('Kies A of B met de stelling waaraan jij prioriteit geeft:'),
      
         html.Div(
             
@@ -191,11 +196,15 @@ app.layout = html.Div(
             ])]
             
         )),
+        html.Div(html.H1('Vergelijking',style={'backgroundColor': '#ffd300'})),
+        
         html.Div(
-        html.H3('Kies hier met welke groep je wilt vergelijken',style={'backgroundColor': '#ffd300'}),),
+        html.H2('Vergelijk je gegevens met die van anderen. '),),
+        html.Div(html.H3('Doelgroep:' )),
         html.Div([dcc.Dropdown(id=  'kies_school',options=[{'label':nametitle, 'value':name} for nametitle,name in 
                      zip(['Haagse Hoge school', 'Hoge school voor de kunsten', 'TU Delft'],
                          ['Haagse Hoge school', 'Hoge school voor de kunsten', 'TU Delft']) ],value = 'TU Delft', style={'display': 'inline-block','width': '66%'} )]),
+        html.Div(html.H3('Onderwijsinstelling:')),
         html.Div([dcc.Dropdown(id=  'kies_groep',options=[{'label':nametitle, 'value':name} for nametitle,name in 
                      zip(['Beleid', 'Medewerker', 'Studenten'],
                          ['Beleid', 'Medewerker', 'Studenten']) ],value = 'Studenten',style={'display': 'inline-block','width': '66%'} )])
@@ -244,7 +253,7 @@ def update_table(groep, vragenn, vragennn,datak, datafr, lijst_pijlers, nummer, 
             datak[int(datafr[1]['Test'])-1] = datak[int(datafr[1]['Test'])-1] + 1 
         df = [{'Antwoord': '', 'Stelling': 'Bedankt voor het invullen!'}, {'Antwoord': '', 'Stelling': 'De test is klaar!'}]
         nummer_output = nummer
-        tekst_output = 'vraag ' + str(nummer_output) + "/16"
+        tekst_output = 'Stelling ' + str(nummer_output) + "/16"
         return df, datak, lijst_pijlers, nummer_output, tekst_output, gekozen_groep
     uno = random.randint(0,len(lijst_pijlers[groep])-1)
     uno_PL = lijst_pijlers[groep][uno][1]
@@ -270,7 +279,7 @@ def update_table(groep, vragenn, vragennn,datak, datafr, lijst_pijlers, nummer, 
         datak = [0,0,0,0,0,0,0,0]
     
     nummer_output = nummer + 1
-    tekst_output = 'vraag ' + str(nummer_output) + "/16"
+    tekst_output = 'Stelling ' + str(nummer_output) + "/16"
     return df, datak, lijst_pijlers, nummer_output, tekst_output, gekozen_groep
 
 
@@ -287,17 +296,17 @@ def update_figure(groep, school, groepp, infor):
                  'Begeleiding', 'Medewerkers', 'Partners-extern netwerk', 'Data en onderzoek'],
   fill='toself'
 )
-    piedata_two = go.Scatterpolar(name = 'Vergelijkings score',
+    piedata_two = go.Scatterpolar(name = 'Vergelijkingsscore',
   r=old_database[school][groepp]['Scores'],
   theta=['Leiderschap/bestuurlijke visie', 'Overgang school-school','Preventie', 'Vroege interventie', 
                  'Begeleiding', 'Medewerkers', 'Partners-extern netwerk', 'Data en onderzoek'],
   fill='toself'
 )
-    layout = go.Layout( title='Test', )
+    layout = go.Layout( title='Vergelijking', )
     return {'data': [piedata, piedata_two], 'layout' : layout}
 
 
-# In[13]:
+# In[3]:
 
 
 if __name__ == '__main__':
