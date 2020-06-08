@@ -4,6 +4,7 @@
 # In[1]:
 
 
+
 import pandas as pd
 import numpy as np
 import random
@@ -139,7 +140,7 @@ app.layout = html.Div(
         html.P('Ben je beleidsbepaler, onderwijsprofessional of student? En ben je op zoek'),
         html.P('naar een aanpak voor een gedeeld beeld en gezamenlijke taal voor het bevorderen van studentenwelzijn?'),
         html.P('Ga dan direct aan de slag! Je deelname is volledig anoniem.'),
-        html.H2('Deelnemer'),
+
         html.H3('Selecteer de doelgroep die op jou van toepassing is.'),
         
         html.Div([
@@ -152,16 +153,7 @@ app.layout = html.Div(
         
   
         ]),
-         html.Div(html.H3('Vul hier de naam van de onderwijsinstelling in:')),   
-         html.Div([
-        dcc.Dropdown(
-            id='school',
-            options=[{'label':nametitle, 'value':name} for nametitle,name in 
-                     zip(['Haagse Hoge school', 'Hoge school voor de kunsten', 'TU Delft'],
-                         ['Haagse Hoge school', 'Hoge school voor de kunsten', 'TU Delft']) ],style={'display': 'inline-block','width': '50%'})
-        
-  
-        ])
+
         
         ]),
      
@@ -201,6 +193,7 @@ app.layout = html.Div(
         
         html.Div(
         html.H3('Vergelijk je gegevens met die van anderen: '),),
+        html.P('Deze functie is ter illustratie en geeft fictieve resultaten weer.'),
         html.Div(html.H3('Doelgroep:' )),
         html.Div([dcc.Dropdown(id=  'kies_school',options=[{'label':nametitle, 'value':name} for nametitle,name in 
                      zip(['Haagse Hoge school', 'Hoge school voor de kunsten', 'TU Delft'],
@@ -312,22 +305,3 @@ def update_figure(groep, school, groepp, infor):
 
 if __name__ == '__main__':
     app.run_server()
-
-
-# In[4]:
-
-
-## OP GITHUB staat de laatste versie.
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
