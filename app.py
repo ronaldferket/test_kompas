@@ -137,7 +137,7 @@ r = [0,0,0,0,0,0,0,0]
 app.layout = html.Div(
     [   html.H1('Aan de slag met het Kompas Studentenwelzijn',style={'backgroundColor': '#b6dbbf'}),
         html.P('Ben je beleidsbepaler, onderwijsprofessional of student? En ben je op zoek'),
-        html.P('naar een aanpak voor een gedeeld beeld en gezamenlijke taal voor het bevorderen van studentenwelzijn?')
+        html.P('naar een aanpak voor een gedeeld beeld en gezamenlijke taal voor het bevorderen van studentenwelzijn?'),
         html.P('Ga dan direct aan de slag! Je deelname is volledig anoniem.'),
         html.H2('Deelnemer'),
         html.H3('Selecteer de doelgroep die op jou van toepassing is.'),
