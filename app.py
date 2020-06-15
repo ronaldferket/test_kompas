@@ -185,8 +185,7 @@ app.layout = html.Div(
             html.Tr(html.Th('', colSpan="2")),
             html.Tr([
                 html.Th(html.Button('Kies A', id='knopA', n_clicks_timestamp='0')),
-                html.Th(html.Button('Kies B', id='knopB', n_clicks_timestamp='0')),
-                html.Th(html.Button('Herstart', id='herstart', n_clicks_timestamp='0'))
+                html.Th(html.Button('Kies B', id='knopB', n_clicks_timestamp='0'))
             ])]
             
         )),
