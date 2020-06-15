@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -123,13 +124,13 @@ lijst_pijlerz = {'Beleid':
                  ('Studenten worden met enige regelmaat geïnformeerd over nieuwe inzichten die het lectoraat (al dan niet via derden) heeft opgedaan over studentenwelzijn', 8)]}
 
 
-old_database = {'Haagse Hoge school' : {'Beleid': {'Scores' : [1,4,0,1,3,1,4,2], 'Aantal': 10}, 
+old_database = {'Instelling 1' : {'Beleid': {'Scores' : [1,4,0,1,3,1,4,2], 'Aantal': 10}, 
                'Medewerker': {'Scores' : [4,4,3,3,0,0,0,2], 'Aantal': 15},
                'Studenten': {'Scores' : [0,0,4,4,4,4,0,0], 'Aantal': 6}},
-                'Hoge school voor de kunsten' : {'Beleid': {'Scores' : [4,1,1,3,1,4,2,0], 'Aantal': 6}, 
+                'Instelling 2' : {'Beleid': {'Scores' : [4,1,1,3,1,4,2,0], 'Aantal': 6}, 
                'Medewerker': {'Scores' : [1,1,1,3,2,4,4,0], 'Aantal': 3},
                'Studenten': {'Scores' : [1,1,4,4,4,2,0,0], 'Aantal': 8}},
-                'TU Delft' : {'Beleid': {'Scores' : [2,2,2,2,2,2,2,2], 'Aantal': 2}, 
+                'Instelling 3' : {'Beleid': {'Scores' : [2,2,2,2,2,2,2,2], 'Aantal': 2}, 
                'Medewerker': {'Scores' : [3,3,3,3,4,0,0,0], 'Aantal': 22},
                'Studenten': {'Scores' : [1,3,4,2,2,1,1,1], 'Aantal': 68}}
                }
@@ -197,7 +198,7 @@ app.layout = html.Div(
         html.Div(html.H3('Doelgroep:' )),
         html.Div([dcc.Dropdown(id=  'kies_school',options=[{'label':nametitle, 'value':name} for nametitle,name in 
                      zip(['Instelling 1', 'Instelling 2', 'Instelling 3'],
-                         ['Haagse Hoge school', 'Hoge school voor de kunsten', 'TU Delft']) ],value = 'TU Delft', style={'display': 'inline-block','width': '66%'} )]),
+                         ['Instelling 1', 'Instelling 2', 'Instelling 3']) ],value = 'Instelling 1', style={'display': 'inline-block','width': '66%'} )]),
         html.Div(html.H3('Onderwijsinstelling:')),
         html.Div([dcc.Dropdown(id=  'kies_groep',options=[{'label':nametitle, 'value':name} for nametitle,name in 
                      zip(['Beleid', 'Medewerker', 'Studenten'],
