@@ -196,7 +196,7 @@ app.layout = html.Div(
         html.P('Deze functie is ter illustratie en geeft fictieve resultaten weer.'),
         html.Div(html.H3('Doelgroep:' )),
         html.Div([dcc.Dropdown(id=  'kies_school',options=[{'label':nametitle, 'value':name} for nametitle,name in 
-                     zip(['Haagse Hoge school', 'Hoge school voor de kunsten', 'TU Delft'],
+                     zip(['Instelling 1', 'Instelling 2', 'Instelling 3'],
                          ['Haagse Hoge school', 'Hoge school voor de kunsten', 'TU Delft']) ],value = 'TU Delft', style={'display': 'inline-block','width': '66%'} )]),
         html.Div(html.H3('Onderwijsinstelling:')),
         html.Div([dcc.Dropdown(id=  'kies_groep',options=[{'label':nametitle, 'value':name} for nametitle,name in 
